@@ -8,9 +8,6 @@ group :development, :test do
 
   gem 'guard', '1.7.0'
   gem 'guard-rspec', '2.5.2'
-  gem 'guard-spork', '1.4.2'
-  gem 'spork', '0.9.2'
-
 end
 
 group :test do

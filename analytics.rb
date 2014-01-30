@@ -1,8 +1,16 @@
 require 'sinatra'
 
-class SiteCall
+class Database
   def initialize
-    "testing it out"
+    @@data ||= []
+  end
+
+  def insert_request(params)
+    @@data << params
+  end
+
+  def requests
+    @@data
   end
 end
 
@@ -10,6 +18,7 @@ get '/' do
   "Welcome to the homepage"
 end
 
-get '/test' do
-  SiteCall.new
+post '/request' do
+  Database.new.insert_request(params)
+  ''
 end

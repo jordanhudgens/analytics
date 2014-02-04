@@ -28,3 +28,9 @@ describe "API" do
   end
 end
 
+describe "Ajax call" do
+  it "gets a value returned when a link is clicked" do
+
+  end
+
+end

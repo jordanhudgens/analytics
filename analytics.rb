@@ -1,19 +1,4 @@
 require 'sinatra'
-require 'data_mapper'
-require 'dm-core'
-require 'dm-timestamps'
-
-DataMapper::setup(:default, 'sqlite3://#{Dir.pwd}/analytics.rb')
-
-class Link
-    include DataMapper::Resource
-
-    property :id, Serial
-    property :link, String
-    property :created_at, DateTime
-    property :updated_at, DateTime
-
-end
 
 
 # set utf-8 for outgoing

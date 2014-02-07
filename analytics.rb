@@ -1,4 +1,5 @@
 require 'sinatra'
+<<<<<<< HEAD
 
 
 # set utf-8 for outgoing
@@ -19,6 +20,9 @@ class Database
     @@data
   end
 end
+=======
+require_relative 'database'
+>>>>>>> 427a3b87ff62de950b5738cfdb0da5397a4e1fef
 
 get '/' do
     @title = "Homepage"
@@ -26,7 +30,7 @@ get '/' do
 end
 
 post '/request' do
-  Database.new.insert_request(params)
+  Database.new.insert_request(params[:token], params[:params])
   ''
 end
 

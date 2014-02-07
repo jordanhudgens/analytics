@@ -11,20 +11,24 @@ describe "my first test" do
 end
 
 describe "API" do
-  it "should save the request to the database" do
-    Database.any_instance.should_receive(:insert_request).
-      with("param1" => 'foo', "param2" => 'bar')
-    post "/request", param1: 'foo', param2: 'bar'
+  before do
+    Database.new.clear
   end
 
   it "should return nothing" do
-    post "/request", param1: 'foo', param2: 'bar'
+    post "/request", params: {param1: 'foo', param2: 'bar'}
     last_response.body.should == ''
   end
 
   it "should have the data stored in the database" do
-    post "/request", param1: 'foo', param2: 'bar'
-    Database.new.requests.should include({"param1" => 'foo', "param2" => 'bar'})
+    post "/request", token: 'alice', params: {param1: 'foo', param2: 'bar'}
+    Database.new.requests('alice').should include({"param1" => 'foo', "param2" => 'bar'})
+  end
+
+  it "should store request under given account" do
+    post "/request", token: 'bob', params: {event: 'clicked-sign-up'}
+    post "/request", token: 'alice', params: {event: 'visited-home-page'}
+    Database.new.requests('bob').should == [{"event" => 'clicked-sign-up'}]
+    Database.new.requests('alice').should == [{"event" => 'visited-home-page'}]
   end
 end
-

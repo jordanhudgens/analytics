@@ -10,4 +10,5 @@ describe Database do
     db.insert_request('token', {})
     db.requests('token').should include({})
   end
+
 end

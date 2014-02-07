@@ -31,4 +31,5 @@ describe "API" do
     Database.new.requests('bob').should == [{"event" => 'clicked-sign-up'}]
     Database.new.requests('alice').should == [{"event" => 'visited-home-page'}]
   end
+
 end
